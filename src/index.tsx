@@ -5,14 +5,16 @@ import { GlobalStyles } from './styles'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles'
 
-import { Card, Content, Title } from './components'
+import { Card, Content, Grid, Title } from './components'
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <GlobalStyles />
     <Content>
       <Title>Sodoku</Title>
-      <Card></Card>
+      <Card>
+        <Grid />
+      </Card>
     </Content>
   </ThemeProvider>,
   document.getElementById('root')
