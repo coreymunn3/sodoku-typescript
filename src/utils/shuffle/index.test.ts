@@ -4,6 +4,7 @@ describe('shuffle', () => {
   it('returns an array with the same length after being shuggled', () => {
     const array = [1, 2, 3]
     shuffle(array)
+    console.log(array)
     expect(array).toHaveLength(3)
   })
 

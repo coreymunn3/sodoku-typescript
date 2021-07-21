@@ -1,5 +1,5 @@
 import { GRID, NUMBERS } from '../../typings'
-import { shuffle } from '../index'
+import { shuffle, isInRow, isInCol } from '../index'
 
 const gridExample = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -24,13 +24,23 @@ function fillGrid(grid: GRID) {
   let col = 0
 
   for (let i = 0; i < 81; i++) {
-    row = Math.floor(i / 9) // if you're in the 20th item, that's second row
+    row = Math.floor(i / 9)
     col = i % 9
 
     if (grid[row][col] === 0) {
       shuffle(numbers)
-      // do stuff,
-      // recursive
+      for (let value of numbers) {
+        // make sure it's not in row already
+        if (!isInRow({ grid, row, value })) {
+          // make sure it's not in col already
+          if (!isInCol({ grid, col, value })) {
+            grid[row][col] = value
+            // check if grid is full, stop and return true
+            // otherwise we run fillGrid again
+          }
+        }
+      }
+
       break
     }
   }
