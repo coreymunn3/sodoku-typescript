@@ -1,5 +1,12 @@
 import { GRID, NUMBERS } from '../../typings'
-import { shuffle, isInRow, isInCol, identifySquare, isInSquare } from '../index'
+import {
+  shuffle,
+  isInRow,
+  isInCol,
+  identifySquare,
+  isInSquare,
+  checkGrid,
+} from '../index'
 
 const gridExample = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -37,12 +44,12 @@ function fillGrid(grid: GRID) {
             // identify the 3x3 working square
             const square = identifySquare({ grid, row, col })
             if (!isInSquare({ square: square, value: value })) {
-              // do something else
+              grid[row][col] = value
             }
-
-            // grid[row][col] = value
             // check if grid is full, stop and return true
-            // otherwise we run fillGrid again
+            if (checkGrid(grid)) return true
+            // if not, call function again to fill it
+            else if (fillGrid(grid)) return true
           }
         }
       }
