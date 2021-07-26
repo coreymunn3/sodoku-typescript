@@ -8,18 +8,6 @@ import {
   checkGrid,
 } from '../index'
 
-const gridExample = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
-
 const numbers: NUMBERS[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 /**
@@ -45,11 +33,11 @@ function fillGrid(grid: GRID) {
             const square = identifySquare({ grid, row, col })
             if (!isInSquare({ square: square, value: value })) {
               grid[row][col] = value
+              // check if grid is full, stop and return true
+              if (checkGrid(grid)) return true
+              // if not, call function again to fill it
+              else if (fillGrid(grid)) return true
             }
-            // check if grid is full, stop and return true
-            if (checkGrid(grid)) return true
-            // if not, call function again to fill it
-            else if (fillGrid(grid)) return true
           }
         }
       }
@@ -57,6 +45,7 @@ function fillGrid(grid: GRID) {
       break
     }
   }
+  grid[row][col] = 0
 }
 
 export default fillGrid
