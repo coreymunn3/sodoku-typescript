@@ -1,14 +1,18 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
-  ${({ theme }) => css`
+interface IProps {
+  isActive?: boolean
+}
+
+export const Container = styled.div<IProps>`
+  ${({ isActive, theme }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 0;
-    background-color: ${theme.colors.white};
+    background-color: ${isActive ? theme.colors.blue : theme.colors.white};
     border: solid 1px ${theme.colors.black};
     cursor: pointer;
     font-weight: bold;

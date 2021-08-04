@@ -2,6 +2,7 @@ import React, { FC, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { Dispatch, AnyAction } from 'redux'
 import { createGrid } from '../../reducers'
+import { INDEX } from '../../typings'
 import Block from './block'
 import { Container, Row } from './styles'
 
@@ -20,7 +21,10 @@ const Grid: FC = () => {
           <Row>
             {React.Children.toArray(
               [...Array(9)].map((_, colIdx) => (
-                <Block rowIndex={rowIdx} colIndex={colIdx}></Block>
+                <Block
+                  rowIndex={rowIdx as INDEX}
+                  colIndex={colIdx as INDEX}
+                ></Block>
               ))
             )}
           </Row>
