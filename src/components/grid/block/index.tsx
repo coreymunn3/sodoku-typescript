@@ -28,7 +28,9 @@ const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
   const dispatch = useDispatch<Dispatch<ISelectBlock>>()
 
   const handleSelectBlock = () => {
-    dispatch(selectBlock([rowIndex, colIndex]))
+    if (!state.isActive) {
+      dispatch(selectBlock([rowIndex, colIndex]))
+    }
   }
   return (
     <Container
