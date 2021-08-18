@@ -1,5 +1,5 @@
 import { GRID } from '../../typings'
-import { getRandomIndex, copyGrid } from '..'
+import { getRandomIndex, copyGrid, solveGrid } from '..'
 import global from '../../global'
 
 /**
@@ -25,7 +25,7 @@ function removeNumbers(grid: GRID, attempts = 5): GRID {
     // set global counter
     global.counter = 0
     // attempt to solve the grid
-
+    solveGrid(gridCopy)
     // if attempt was not successful, decrement counter
     if (global.counter !== 1) {
       grid[row][col] = backup
