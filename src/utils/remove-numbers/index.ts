@@ -9,7 +9,6 @@ import global from '../../global'
  */
 function removeNumbers(grid: GRID, attempts = 5): GRID {
   while (attempts > 0) {
-    // select random row and col
     let row = 0
     let col = 0
 
@@ -17,7 +16,7 @@ function removeNumbers(grid: GRID, attempts = 5): GRID {
       row = getRandomIndex()
       col = getRandomIndex()
     }
-    const backup = grid[row][col]
+    const temp = grid[row][col]
     grid[row][col] = 0
 
     // copy grid
@@ -28,7 +27,7 @@ function removeNumbers(grid: GRID, attempts = 5): GRID {
     solveGrid(gridCopy)
     // if attempt was not successful, decrement counter
     if (global.counter !== 1) {
-      grid[row][col] = backup
+      grid[row][col] = temp
       attempts--
     }
   }

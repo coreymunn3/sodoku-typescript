@@ -4,7 +4,9 @@ import * as types from './types'
 
 // for reducer state
 export interface IReducer {
+  challengeGrid?: GRID
   solvedGrid?: GRID
+  workingGrid?: GRID
   selectedBlock?: BLOCK_COORDS
 }
 

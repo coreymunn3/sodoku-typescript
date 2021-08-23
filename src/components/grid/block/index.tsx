@@ -19,8 +19,8 @@ interface IState {
 
 const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
   const state = useSelector<IReducer, IState>(
-    ({ solvedGrid, selectedBlock }) => ({
-      value: solvedGrid?.[rowIndex]?.[colIndex],
+    ({ workingGrid, selectedBlock }) => ({
+      value: workingGrid?.[rowIndex]?.[colIndex],
       isActive:
         selectedBlock?.[0] === rowIndex && selectedBlock?.[1] === colIndex,
     })
@@ -38,7 +38,7 @@ const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
       data-cy={`block-${rowIndex}-${colIndex}`}
       onClick={handleSelectBlock}
     >
-      {state.value}
+      {state.value === 0 ? '' : state.value}
     </Container>
   )
 }
