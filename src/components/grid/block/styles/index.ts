@@ -2,10 +2,11 @@ import styled, { css } from 'styled-components'
 
 interface IProps {
   isActive?: boolean
+  isPuzzle?: boolean
 }
 
 export const Container = styled.div<IProps>`
-  ${({ isActive, theme }) => css`
+  ${({ isActive, isPuzzle, theme }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,7 +16,7 @@ export const Container = styled.div<IProps>`
     background-color: ${isActive ? theme.colors.blue : theme.colors.white};
     border: solid 1px ${theme.colors.black};
     cursor: pointer;
-    font-weight: bold;
+    font-weight: ${isPuzzle ? 'bold' : 'normal'};
     font-size: 20px;
     height: auto;
     transition: ${theme.transition};
