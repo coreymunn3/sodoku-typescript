@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { unregister, configureStore } from './core'
+import { register, configureStore } from './core'
+import { PersistGate } from 'redux-persist/integration/react'
 import { GlobalStyles } from './styles'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './styles'
@@ -15,23 +16,25 @@ import {
   Title,
 } from './components'
 
-const store = configureStore()
+const { store, persister } = configureStore()
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <GlobalStyles />
     <Provider store={store}>
-      <Content>
-        <Title>Sodoku</Title>
-        <Card>
-          <NewGame />
-          <Grid />
-          <NumberButtons />
-        </Card>
-      </Content>
+      <PersistGate loading={null} persistor={persister}>
+        <Content>
+          <Title>Sodoku</Title>
+          <Card>
+            <NewGame />
+            <Grid />
+            <NumberButtons />
+          </Card>
+        </Content>
+      </PersistGate>
     </Provider>
   </ThemeProvider>,
   document.getElementById('root')
 )
 
-unregister()
+register()
