@@ -6,7 +6,14 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './styles'
 import { Provider } from 'react-redux'
 
-import { Card, Content, Grid, NumberButtons, Title } from './components'
+import {
+  Card,
+  Content,
+  Grid,
+  NewGame,
+  NumberButtons,
+  Title,
+} from './components'
 
 const store = configureStore()
 
@@ -17,6 +24,7 @@ ReactDOM.render(
       <Content>
         <Title>Sodoku</Title>
         <Card>
+          <NewGame />
           <Grid />
           <NumberButtons />
         </Card>
